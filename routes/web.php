@@ -32,11 +32,10 @@ Route::middleware(['auth'])->group(function () {
 
     // === TAMBAHAN SOAL 1 (A2, A3, & A4) ===
     Route::get('/buku-cari', [BukuController::class, 'cariSqlInjection']);
-    Route::get('/buku/{buku}/hapus', [BukuController::class, 'destroy']); // A3
     Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show']); // A4
     
 
-    // 1. Grup Admin & Petugas (Dilindungi can:kelola-buku untuk Buku - Soal 3)
+    // 1. Grup Admin & Petugas
     Route::middleware(['role:admin|petugas'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [BukuController::class, 'adminDashboard'])->name('dashboard');
 
@@ -54,9 +53,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     });
 
-    // SOAL 3: Grup khusus resource buku dengan middleware can:kelola-buku
-    Route::middleware(['can:kelola-buku'])->prefix('admin')->name('admin.')->group(function () {
+
+    // === TAMBAHAN KODE BARU (SOAL 3 / KELOLA BUKU) ===
+    // Diperbaiki dengan menambahkan ->name('admin.') agar route resource memiliki prefiks admin.
+    Route::middleware(['auth', 'can:kelola-buku'])->prefix('admin')->name('admin.')->group(function () {
         Route::resource('buku', BukuController::class);
+    });
+
+    // Sisa rute pengelolaan buku (index/status peminjaman) yang terikat nama admin
+    Route::middleware(['can:kelola-buku'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
         Route::patch('/peminjaman/{id}/status', [PeminjamanController::class, 'updateStatus'])->name('peminjaman.updateStatus');
     });

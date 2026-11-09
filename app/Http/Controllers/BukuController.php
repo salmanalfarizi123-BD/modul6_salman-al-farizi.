@@ -101,7 +101,7 @@ class BukuController extends Controller
     }
     public function cariSqlInjection(Request $request) {
     $judul = $request->input('judul');
-    $result = DB::select("SELECT * FROM bukus WHERE judul = '$judul'"); // Rentan SQLi
+    $result = DB::select("SELECT * FROM bukus WHERE judul = ?", [$judul]); // Rentan SQLi
     return response()->json($result);
     }
 }
