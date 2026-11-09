@@ -60,4 +60,13 @@ class PeminjamanController extends Controller
 
         return view('siswa.riwayat', compact('peminjamans'));
     }
+    public function show($id)
+    {
+        // Sengaja mengambil data dengan findOrFail tanpa validasi pemilik (Insecure Direct Object Reference)[cite: 1]
+        $peminjaman = \App\Models\Peminjaman::findOrFail($id);
+        
+
+        return view('peminjaman.show', compact('peminjaman'));
+    }
+
 }

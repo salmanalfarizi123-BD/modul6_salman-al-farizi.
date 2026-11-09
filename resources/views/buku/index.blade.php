@@ -26,7 +26,7 @@
                         <tbody class="bg-white divide-y divide-blue-50">
                             @forelse($bukus as $buku)
                                 <tr class="hover:bg-blue-50/50 transition">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-blue-950">{{ $buku->judul }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-blue-950">{!! $buku->judul !!}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $buku->kategori->nama ?? 'Umum' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $buku->penulis ?? '-' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $buku->tahun_terbit ?? '-' }}</td>

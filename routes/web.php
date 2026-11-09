@@ -30,11 +30,11 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // === TAMBAHAN SOAL 1 (A2 & A4) ===
+    // === TAMBAHAN SOAL 1 (A2, A3, & A4) ===
     Route::get('/buku-cari', [BukuController::class, 'cariSqlInjection']);
-    Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show']);
-    // (Route A3 get /hapus ditambahkan saat Soal 1, lalu dihapus kembali saat Soal 2)
-    // ===================================
+    Route::get('/buku/{buku}/hapus', [BukuController::class, 'destroy']); // A3
+    Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show']); // A4
+    
 
     // 1. Grup Admin & Petugas (Dilindungi can:kelola-buku untuk Buku - Soal 3)
     Route::middleware(['role:admin|petugas'])->prefix('admin')->name('admin.')->group(function () {
