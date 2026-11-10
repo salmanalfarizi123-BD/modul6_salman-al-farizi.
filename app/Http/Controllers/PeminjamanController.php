@@ -62,7 +62,6 @@ class PeminjamanController extends Controller
     }
     public function show($id)
     {
-        // Sengaja mengambil data dengan findOrFail tanpa validasi pemilik (Insecure Direct Object Reference)[cite: 1]
         $peminjaman = \App\Models\Peminjaman::findOrFail($id);
         
 
