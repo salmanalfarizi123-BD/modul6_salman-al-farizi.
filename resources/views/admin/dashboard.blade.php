@@ -10,7 +10,7 @@
             
             <!-- Banner Sambutan Admin -->
             <div class="bg-gradient-to-r from-blue-900 to-blue-700 overflow-hidden shadow-md sm:rounded-xl p-8 text-white">
-                <h3 class="text-2xl font-bold mb-2">Selamat Datang, Administrator! 👨‍💼</h3>
+                <h3 class="text-2xl font-bold mb-2">Selamat Datang, Administrator!</h3>
                 <p class="text-blue-100 text-sm md:text-base">
                     Kelola seluruh sistem perpustakaan, data buku, peminjaman, hingga penetapan role pengguna melalui panel admin ini.
                 </p>
